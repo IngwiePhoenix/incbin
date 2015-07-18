@@ -22,7 +22,11 @@
 # endif
 #endif
 
+#ifndef _MSC_VER
 #define INCBIN_ALIGN __attribute__((aligned(INCBIN_ALIGNMENT)))
+#else
+#define INCBIN_ALIGN __declspec(align(INCBIN_ALIGNMENT))
+#endif
 
 #ifdef __cplusplus
 #  define INCBIN_EXTERNAL extern "C"
