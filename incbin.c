@@ -107,7 +107,7 @@ usage:
             while (isspace(*end)) end--;
             *++end = '\0';
             fprintf(out, "/* INCBIN(%s, %s); */\n", name, file);
-            fprintf(out, "const unsigned char g%sData[] = {\n    ", name);
+            fprintf(out, "unsigned char g%sData[] = {\n    ", name);
             *--end = '\0';
             file++;
             FILE *f = fopen(file, "rb");
@@ -145,8 +145,8 @@ usage:
                 fclose(f);
             }
             fprintf(out, "\n};\n");
-            fprintf(out, "const unsigned char *g%sEnd = g%sData + sizeof(g%sData);\n", name, name, name);
-            fprintf(out, "const unsigned int g%sSize = sizeof(g%sData);\n", name, name);
+            fprintf(out, "unsigned char *g%sEnd = g%sData + sizeof(g%sData);\n", name, name, name);
+            fprintf(out, "unsigned int g%sSize = sizeof(g%sData);\n", name, name);
         }
 end:
         free(line);
